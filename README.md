@@ -1,11 +1,7 @@
-<h1>
-  <p align="center">
-    Spring 2024
-  </p>
-</h1>
-
-<p align="center">
-  Hello, this is a showcase of all of the work I did in my Spring semester of my freshmen year at UCF.<br>
-  Some of the important concepts displayed in these projects are: Strings, Dynamic Memory, Linked Lists, Recursion, Sorting Methods, and Binary.
-
-
+<h1>COP-3502C</h1>
+<p>Collection of work from my Spring 2024 semester at UCF. This keeps my progress for all of my assignments and school projects. This will also show my progression in the C language.</p>
+<h2>Concepts Learned</h2>
+<ul>
+  <li>Leveraging String Library</li>
+  <li>Using 2D Arrays</li>
+</ul>
