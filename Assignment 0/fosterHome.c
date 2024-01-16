@@ -5,7 +5,7 @@ void chomp(char word []); //prototype
 
 typedef struct{
 
-    char name[4]; //suffix
+    char suffix[4]; //suffix
     int location, cat;
 
 }family_t; //name of struct
@@ -15,18 +15,18 @@ int main() //start of main
     int cages, weeks;
     scanf(" %d %d", &cages, &weeks); //scans input
     //creates enough room for longest possible name
-    char arr[cages][20 + (weeks * 3)];
+    char catNames[cages][20 + (weeks * 3)];
 
     //for the number of cats
     for(int i = 0; i <= cages; i++)
     {
-        char str[20];
+        char tempName[20];
 
-        fgets(str, 20, stdin); //get their name
+        fgets(tempName, 20, stdin); //get their name
 
-        chomp(str); //remove newline
+        chomp(tempName); //remove newline
 
-        strcpy(arr[i], str);
+        strcpy(catNames[i], tempName);
     }
 
     //declare families
@@ -35,9 +35,9 @@ int main() //start of main
     family_t f3;
 
     //assign suffix to each family
-    strcpy(f1.name, "Lee");
-    strcpy(f2.name, "Lyn");
-    strcpy(f3.name, "Eve");
+    strcpy(f1.suffix, "Lee");
+    strcpy(f2.suffix, "Lyn");
+    strcpy(f3.suffix, "Eve");
 
     //assign starting location
     f1.location = 1;
@@ -53,7 +53,7 @@ int main() //start of main
     for(int i = 1; i < weeks; i++)
     {
         //add suffix to cat and move 2 cages
-        strcat(arr[f1.cat], f1.name);
+        strcat(catNames[f1.cat], f1.suffix);
         f1.location = f1.location + 2;
         
         //brings them back to beginning if they get to the end
@@ -73,7 +73,7 @@ int main() //start of main
         }
 
         //add suffix to cat and move 3 cages
-        strcat(arr[f2.cat], f2.name);
+        strcat(catNames[f2.cat], f2.suffix);
         f2.location = f2.location + 3;
 
         //brings them back to beginning if they get to the end
@@ -93,7 +93,7 @@ int main() //start of main
         }
 
         //add suffix to cat and move 5 cages
-        strcat(arr[f3.cat], f3.name);
+        strcat(catNames[f3.cat], f3.suffix);
         f3.location = f3.location + 5;
 
         //brings them back to beginning if they get to the end
@@ -123,7 +123,7 @@ int main() //start of main
         }
         else
         {
-            printf("%s\n", arr[i]);
+            printf("%s\n", catNames[i]);
         }
     }
 
