@@ -1,0 +1,9 @@
+HEC 1 5
+StudentUnion 1 45
+HEC 1 10
+StudentUnion 1 25
+CB1 5 20
+HEC 2 5
+CB1 5 15
+HEC 1 15
+END -1 -1

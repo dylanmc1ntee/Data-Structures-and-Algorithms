@@ -1,0 +1,8 @@
+HouseAlice 99 20
+HouseBob 4 20
+HouseAlice 99 0
+HouseAlice 99 20
+HouseAlice 99 10
+HouseAlice 53 20
+HouseAlice 53 10
+END -1 -1
