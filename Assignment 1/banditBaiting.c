@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 
 typedef struct {
     
@@ -11,7 +12,7 @@ typedef struct {
 typedef struct {
     
     char locationName[20];
-    placement_t existingPlacements[1];
+    placement_t * existingPlacements;
     int numID;
     int totalFood;
 
@@ -21,83 +22,73 @@ int main()
 {
     char name[20];
     int id, foodLevel;
-    int end = 0;
 
-    int length = 1;
-    location_t *locations = (malloc(sizeof(location_t) * length));
+    int locationsLength = 1;
+    location_t* locations = (location_t *)(malloc(sizeof(location_t) * locationsLength));
 
-    if(locations == NULL)
+    scanf("%s %d %d", name, &id, &foodLevel);
+
+    while((strcmp(name, "END") != 0) && (id != -1) && (foodLevel != -1))
     {
-        printf("Memory allocation FAILED.");
-    }
-    else
-    {
-        while(end == 0)
+        int locationIndex = -1;
+
+        for(int i = 0; i < locationsLength; i++)
         {
-            scanf("%s %d %d", name, &id, &foodLevel);
-
-            if((!(strcmp(name, "END") == 0)) && (!(id == -1)) && (!(foodLevel == -1)))
+            if(strcmp(locations[i].locationName, name))
             {
-                int match = 0;
+                //if location exists
+                locationIndex = i;
+                break;
+            }
+        }
 
-                for(int i = 0; i < length; i++)
+        if(locationIndex != -1)
+        {
+            //location was found
+            int positionIndex = -1;
+
+            for(int i = 0; i < locations[locationIndex].numID; i++)
+            {
+                if(locations[locationIndex].existingPlacements[i].id == id)
                 {
-                    if(strcmp(name, locations[i].locationName) == 0)
-                    {
-                        match = 1;
-
-                        for(int j = 0; j < locations[i].numID; j++)
-                        {
-                            if(locations[i].existingPlacements[j].id == id)
-                            {
-                                int changeInFood = locations[i].existingPlacements[j].previousFoodLevel - foodLevel;
-
-                                if(changeInFood > 0)
-                                {
-                                    printf("%d\n", changeInFood);
-                                    locations[i].existingPlacements[j].previousFoodLevel = foodLevel;
-                                    locations[i].totalFood += changeInFood;
-                                }
-                                else
-                                {
-                                    printf("0\n");
-                                    locations[i].existingPlacements[j].previousFoodLevel = foodLevel;
-                                }
-                            }
-                            else
-                            {
-
-                            }
-                        }
-                    }
-                    if(match == 0)
-                    {
-                        if((sizeof(locations) / sizeof(locations[0])) == length)
-                        {
-                            length++;
-                            locations = realloc(locations, sizeof(locations) * length);
-                            
-                            
-                        }
-                    }
-                    match = 0;
+                    positionIndex = i;
+                    break;
                 }
-            
+            }
+
+            if(positionIndex != -1)
+            {
+                //id was found
+                int sum = locations[locationIndex].existingPlacements[positionIndex].previousFoodLevel - foodLevel;
+
+                if(sum > 0)
+                {
+                    //add to total food taken
+                    locations[locationIndex].totalFood += sum;
+                    printf("%d\n", sum);
+                }
+                else
+                {
+                    printf("0");
+                }
+
+                //set prevfoodlevel as new one
+                locations[locationIndex].existingPlacements[positionIndex].previousFoodLevel = foodLevel;
             }
             else
             {
-                for(int i = 0; i < length; i++)
-                {
-                    printf("%s %d\n", locations[i].locationName, locations[i].totalFood);
-                }
-
-                end = 1;
+                //id not found
+                printf("New placement.\n");
             }
         }
+        else
+        {
+            //location was not found
+            printf("New placement.\n");
+        }
+
+        scanf("%s %d %d", name, &id, &foodLevel);
     }
-
-    free(locations);
-    locations = NULL;
-
+    
     return 0;
 }
