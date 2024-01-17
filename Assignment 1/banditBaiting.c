@@ -13,6 +13,7 @@ typedef struct {
     
     char locationName[20];
     placement_t * existingPlacements;
+    int placementLength;
     int numID;
     int totalFood;
 
@@ -24,6 +25,7 @@ int main()
     int id, foodLevel;
 
     int locationsLength = 1;
+    int numLocations = 0;
     location_t* locations = (location_t *)(malloc(sizeof(location_t) * locationsLength));
 
     scanf("%s %d %d", name, &id, &foodLevel);
@@ -47,7 +49,7 @@ int main()
             //location was found
             int positionIndex = -1;
 
-            for(int i = 0; i < locations[locationIndex].numID; i++)
+            for(int i = 0; i < locations[locationIndex].placementLength; i++)
             {
                 if(locations[locationIndex].existingPlacements[i].id == id)
                 {
@@ -69,7 +71,7 @@ int main()
                 }
                 else
                 {
-                    printf("0");
+                    printf("0\n");
                 }
 
                 //set prevfoodlevel as new one
@@ -78,17 +80,55 @@ int main()
             else
             {
                 //id not found
+                printf("1-");
                 printf("New placement.\n");
+
+                if(locations[locationIndex].numID == locations[locationIndex].placementLength)
+                {
+                    locations[locationIndex].existingPlacements = (placement_t*)(realloc(locations[locationIndex].existingPlacements, sizeof(placement_t) * (locations[locationIndex].placementLength + 1)));
+                    locations[locationIndex].placementLength += 1;
+                }
+
+                locations[locationIndex].existingPlacements[locations[locationIndex].numID].id = id;
+                locations[locationIndex].existingPlacements[locations[locationIndex].numID].previousFoodLevel = foodLevel;
+
+                locations[locationIndex].numID += 1;
             }
         }
         else
         {
             //location was not found
+            printf("2-");
             printf("New placement.\n");
+            if(numLocations == locationsLength)
+            {
+                locations = (location_t*)(realloc(locations, (sizeof(location_t) * (locationsLength + 1))));
+                locationsLength += 1;
+            }
+            strcpy(locations[numLocations].locationName, name);
+            locations[numLocations].numID = 1;
+            locations[numLocations].totalFood = 0;
+
+            locations[numLocations].existingPlacements = (placement_t*)(malloc(sizeof(placement_t) * locations[numLocations].numID));
+            locations[numLocations].placementLength = 1;
+            locations[numLocations].existingPlacements->id = id;
+            locations[numLocations].existingPlacements->previousFoodLevel = foodLevel;
+
+            numLocations += 1;
         }
 
         scanf("%s %d %d", name, &id, &foodLevel);
     }
+
+    for(int i = 0; i < locationsLength; i++)
+    {
+        printf("~%d", locationsLength);
+        free(locations[i].existingPlacements);
+        locations[i].existingPlacements = NULL;
+    }
+
+    free(locations);
+    locations = NULL;
     
     return 0;
 }
