@@ -36,7 +36,7 @@ int main()
 
         for(int i = 0; i < locationsLength; i++)
         {
-            if(strcmp(locations[i].locationName, name))
+            if(strcmp(locations[i].locationName, name) == 0)
             {
                 //if location exists
                 locationIndex = i;
@@ -80,7 +80,7 @@ int main()
             else
             {
                 //id not found
-                printf("1-");
+                //printf("1-");
                 printf("New placement.\n");
 
                 if(locations[locationIndex].numID == locations[locationIndex].placementLength)
@@ -98,7 +98,7 @@ int main()
         else
         {
             //location was not found
-            printf("2-");
+            //printf("2-");
             printf("New placement.\n");
             if(numLocations == locationsLength)
             {
@@ -122,7 +122,6 @@ int main()
 
     for(int i = 0; i < locationsLength; i++)
     {
-        printf("~%d", locationsLength);
         free(locations[i].existingPlacements);
         locations[i].existingPlacements = NULL;
     }
