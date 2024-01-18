@@ -11,3 +11,11 @@
   <li>Leveraging String Library</li>
   <li>Using 2D Arrays</li>
 </ul>
+
+<p>Assignment 1:</p>
+
+<ul>
+  <li>Dynamic Arrays</li>
+  <li>Dynamic Structs</li>
+  <li>Linear Search</li>
+</ul>
