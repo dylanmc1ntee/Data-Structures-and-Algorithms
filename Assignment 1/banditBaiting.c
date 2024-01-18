@@ -122,6 +122,11 @@ int main()
 
     for(int i = 0; i < locationsLength; i++)
     {
+        printf("%s %d\n", locations[i].locationName, locations[i].totalFood);
+    }
+
+    for(int i = 0; i < locationsLength; i++)
+    {
         free(locations[i].existingPlacements);
         locations[i].existingPlacements = NULL;
     }
