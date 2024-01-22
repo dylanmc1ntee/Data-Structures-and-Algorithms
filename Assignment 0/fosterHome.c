@@ -21,9 +21,9 @@ int main() //start of main
     //for the number of cats
     for(int i = 0; i <= cages; i++)
     {
-        char tempName[20];
+        char tempName[21];
 
-        fgets(tempName, 20, stdin); //get their name
+        fgets(tempName, 21, stdin); //get their name
 
         chomp(tempName); //remove newline
 
