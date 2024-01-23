@@ -1,0 +1,9 @@
+3
+WarNPeace 1600 1
+LeoT 1599 2
+ALongTale 2000 3
+Alice 1980 16
+Bob 1984 12
+Carol 1984 20
+ALongerTale 2002 1
+Alice 1980 16
