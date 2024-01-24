@@ -4,7 +4,7 @@
 
 int main()
 {
-    char origionalString[100 + 1]; 
+    char origionalString[4000 + 1]; 
     scanf("%s", origionalString);
 
     int numForbidden;
