@@ -18,6 +18,13 @@ int main()
         scanf("%c", &forbiddenChars[i]);
     }
 
+    printf("%d\n", numForbidden);
+
+    for(int i = 0; i < numForbidden; i++)
+    {
+        printf("%c\n", forbiddenChars[i]);
+    }
+
     int origionalLen = strlen(origionalString);
 
     for(int i = 0; i < origionalLen; i++)
