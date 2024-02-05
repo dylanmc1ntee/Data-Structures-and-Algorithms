@@ -2,24 +2,28 @@
 #include<stdlib.h>
 #include<string.h>
 
-typedef struct{
+typedef struct Node Node;
+typedef struct Stack Stack;
+typedef struct Elephant Elephant;
+
+struct Node{
 
     int r, c;
     Node * next;
 
-} Node;
+};
 
-typedef struct{
+struct Stack{
 
     Node * head;
 
-} Stack;
+};
 
-typedef struct{
+struct Elephant{
 
     Stack memory;
 
-} Elephant;
+};
 
 Node * createNode(int row, int col)
 {
