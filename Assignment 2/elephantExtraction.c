@@ -53,12 +53,12 @@ void pop(Stack * stack)
     free(tmp);
 }
 
-void top(Stack * stack, int * rowPtr, int * colPtr)
+void top(Stack stack, int * rowPtr, int * colPtr)
 {
-    if(stack->head != NULL)
+    if(stack.head != NULL)
     {
-        *rowPtr = stack->head->r;
-        *colPtr = stack->head->c;
+        *rowPtr = stack.head->r;
+        *colPtr = stack.head->c;
     }
 }
 
@@ -76,12 +76,14 @@ int eatBait(int ** grid, int row, int col)
 
 void move(Elephant * elephant, int ** grid)
 {
-    int * curRow;
-    int * curCol;
+    int row;
+    int col;
+    int * curRow = &row;
+    int * curCol = &col;
     int direction = -1;
     int up = 0, down = 0, left = 0, right = 0;
 
-    top(&elephant->memory, curRow, curCol);
+    top(elephant->memory, curRow, curCol);
 
     if(*curRow != 499 && grid[*curRow + 1][*curCol] > 0)
     {
@@ -138,14 +140,16 @@ int progressHour(Elephant * elephant, int numElephants, int ** grid)
 
     for(int i = 0; i < numElephants; i++)
     {
-        int* curRow;
-        int* curCol;
+        int row;
+        int col;
+        int* curRow = &row;
+        int* curCol = &col;
 
-        top(&elephant[i].memory, curRow, curCol);
+        top(elephant[i].memory, curRow, curCol);
 
         if(grid[*curRow][*curCol] > 0)
         {
-            numEaten = numEaten + eatBait(grid, *curRow, *curCol);
+            numEaten = numEaten + eatBait(grid, row, col);
         }
         else
         {
@@ -210,6 +214,7 @@ int main()
         {
             scanf("%d %d %d", &row, &col, &amount);
             grid[row][col] = amount;
+            printf("Amount at [%d][%d] is %d...\n", row, col, amount);
         }
 
         if(strcmp(command, "HOUR") == 0)
@@ -224,10 +229,12 @@ int main()
 
     for(int i = 0; i < numElephants; i++)
     {
-        int * curRow;
-        int * curCol;
+        int row;
+        int col;
+        int * curRow = &row;
+        int * curCol = &col;
 
-        top(&elephantList[i].memory, curRow, curCol);
+        top(elephantList[i].memory, curRow, curCol);
 
         printf("%d %d\n", *curRow, *curCol);
     }
