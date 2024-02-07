@@ -19,3 +19,11 @@
   <li>Dynamic Structs</li>
   <li>Linear Search</li>
 </ul>
+
+<p>Assignment 2:</p>
+
+<ul>
+  <li>Linked Lists</li>
+  <li>Stacks</li>
+  <li>Push, Pop, Peak</li>
+</ul>
