@@ -149,11 +149,26 @@ int progressHour(Elephant * elephant, int numElephants, int ** grid)
 
         if(grid[*curRow][*curCol] > 0)
         {
-            numEaten = numEaten + eatBait(grid, row, col);
+            numEaten += eatBait(grid, row, col);
         }
         else
         {
             move(&elephant[i], grid);
+        }
+    }
+
+    for(int i = 0; i < numElephants; i++)
+    {
+        int row;
+        int col;
+        int* curRow = &row;
+        int* curCol = &col;
+
+        top(elephant[i].memory, curRow, curCol);
+
+        if(grid[*curRow][*curCol] > 0)
+        {
+            numEaten += eatBait(grid, row, col);
         }
     }
 
@@ -214,7 +229,6 @@ int main()
         {
             scanf("%d %d %d", &row, &col, &amount);
             grid[row][col] = amount;
-            printf("Amount at [%d][%d] is %d...\n", row, col, amount);
         }
 
         if(strcmp(command, "HOUR") == 0)
