@@ -1,48 +1,47 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct Cat Cat;
-
-struct Cat{
-
-    int * origionalHappyLevel;
-    int * happyLevelWithCats;
-
-};
-
 int main()
 {
     int numCats;
-    Cat * catArray = malloc(sizeof(Cat) * numCats);
+    int numFamilies = 3;
+
+    scanf("%d", &numCats);
+    
+    int ** origionalHappyLevel[numCats][numFamilies];
+    int ** happyWithOthers[numCats][numCats];
 
     for(int i = 0; i < numCats; i++)
     {
-        catArray[i].origionalHappyLevel = malloc(sizeof(int) * 3);
-        scanf("%d %d %d", catArray[i].origionalHappyLevel[0], catArray[i].origionalHappyLevel[1], catArray[i].origionalHappyLevel[2]);
-    }
-
-    for(int i = 0; i < numCats; i++)
-    {
-        catArray[i].happyLevelWithCats = malloc(sizeof(int) * numCats);
-
-        for(int j = 0; j < numCats; j++)
+        for(int j = 0; j < numFamilies; j++)
         {
-            scanf("%d", catArray[i].happyLevelWithCats[j]);
+            scanf("%d", origionalHappyLevel[i][j]);
         }
-    }
-
-    for(int i = 0; i < numCats; i++)
-    {
-        printf("%d %d %d\n", catArray[i].origionalHappyLevel[0], catArray[i].origionalHappyLevel[1], catArray[i].origionalHappyLevel[2]);
     }
 
     for(int i = 0; i < numCats; i++)
     {
         for(int j = 0; j < numCats; j++)
         {
-            printf("%d ", catArray[i].happyLevelWithCats[j]);
+            scanf("%d", happyWithOthers[i][j]);
         }
+    }
 
+    for(int i = 0; i < numCats; i++)
+    {
+        for(int j = 0; j < numFamilies; j++)
+        {
+            printf("%d ", origionalHappyLevel[i][j]);
+        }
+        printf("\n");
+    }
+
+    for(int i = 0; i < numCats; i++)
+    {
+        for(int j = 0; j < numCats; j++)
+        {
+            printf("%d ", happyWithOthers[i][j]);
+        }
         printf("\n");
     }
 
