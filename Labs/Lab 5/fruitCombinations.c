@@ -2,8 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 
-#define numFruit 7
-#define numBuy 3
+#define numFruit 9
+#define numBuy 8
 
 void combination(char ** allFruit, char ** basket, int basketIndex, int fruitIndex)
 {
@@ -39,13 +39,16 @@ int main()
     char ** basket = (char**) malloc(sizeof(char *) * numBuy);
 
     allFruit[0] = "apple";
-    allFruit[1] = "orange";
-    allFruit[2] = "kiwi";
-    allFruit[3] = "tomato";
-    allFruit[4] = "banana";
-    allFruit[5] = "grapefruit";
-    allFruit[6] = "pineapple";
+    allFruit[1] = "banana";
+    allFruit[2] = "cantaloupe";
+    allFruit[3] = "lemon";
+    allFruit[4] = "lime";
+    allFruit[5] = "apricot";
+    allFruit[6] = "plum";
     allFruit[7] = "grape";
+    allFruit[8] = "cucumber";
+
+    combination(allFruit, basket, 0, 0);
 
     return 0;
 }
