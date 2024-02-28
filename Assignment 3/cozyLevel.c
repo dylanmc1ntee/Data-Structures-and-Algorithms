@@ -6,7 +6,7 @@
 
 void findMaxHappy(int ** initialHappiness, int ** relationship, int ** combo, int numCats)
 {
-    for(int i = 0; i < numCats)
+    for(int i = 0; i < numCats; i++)
     {
         
     }
