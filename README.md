@@ -27,3 +27,13 @@
   <li>Stacks</li>
   <li>Push, Pop, Peak</li>
 </ul>
+
+<p>Assignment 3:</p>
+
+<ul>
+  <li>Recursive Functions</li>
+  <li>Combinations</li>
+  <li>Brute Force</li>
+</ul>
+
+
