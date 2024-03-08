@@ -36,4 +36,12 @@
   <li>Brute Force</li>
 </ul>
 
+<p>Assignment 4:</p>
+
+<ul>
+  <li>Recursive Sorts</li>
+  <li>Merge Sort</li>
+  <li>Using a Stack</li>
+</ul>
+
 
