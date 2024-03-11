@@ -8,7 +8,7 @@ struct Stack {
 
     int capacity;
     int current;
-    int * stackArr;
+    long long * stackArr;
 
 };
 
@@ -43,7 +43,7 @@ void clearFromStack(Stack * s1)
 }
 
 // removes a specific shop from array of shops
-void removeFromArray(int * shops, int count, int numShops)
+void removeFromArray(long long * shops, int count, int numShops)
 {
     for(int i = count - 1; i < numShops - 1; i++)
     {
@@ -52,13 +52,13 @@ void removeFromArray(int * shops, int count, int numShops)
 }
 
 // merges 2 sorted arrays into 1 array
-void merge2Arrays(int * arr, int left, int middle, int right)
+void merge2Arrays(long long * arr, int left, int middle, int right)
 {
     int index1 = middle - left + 1;
     int index2 = right - middle;
 
-    int leftSide[index1];
-    int rightSide[index2];
+    long long leftSide[index1];
+    long long rightSide[index2];
 
     int i;
     for(i = 0; i < index1; i++)
@@ -103,7 +103,7 @@ void merge2Arrays(int * arr, int left, int middle, int right)
 }
 
 // recursively sorts the given array using merge sort
-void mergeSort(int * arr, int left, int right)
+void mergeSort(long long * arr, int left, int right)
 {
     if(left < right)
     {
@@ -117,9 +117,9 @@ void mergeSort(int * arr, int left, int right)
 }
 
 // simulates buying a shop
-int buyShop(Stack * s1, int * arr, int count, int BTS_Wealth, int numShops)
+int buyShop(Stack * s1, long long * arr, int count, long long BTS_Wealth, int numShops)
 {
-    int sum = BTS_Wealth + s1->stackArr[count - 1];
+    long long sum = BTS_Wealth + s1->stackArr[count - 1];
     pop(s1);
 
     removeFromArray(arr, count, numShops);
@@ -129,19 +129,20 @@ int buyShop(Stack * s1, int * arr, int count, int BTS_Wealth, int numShops)
 int main()
 {
     // gets the number of shops and initial wealth of BTS
-    int numShops, BTS_Wealth;
-    scanf("%d %d", &numShops, &BTS_Wealth);
+    int numShops;
+    long long BTS_Wealth;
+    scanf("%d %lld", &numShops, &BTS_Wealth);
 
     // scan in the wealth of N shops
-    int * shops = (int *) malloc(sizeof(int) * numShops);
+    long long * shops = (long long *) malloc(sizeof(long long) * numShops);
     for(int i = 0; i < numShops; i++)
     {
-        scanf("%d", &shops[i]);
+        scanf("%lld", &shops[i]);
     }
 
     // creates the stack
     Stack wealthStack;
-    wealthStack.stackArr = (int *) malloc(sizeof(int) * numShops);
+    wealthStack.stackArr = (long long *) malloc(sizeof(long long) * numShops);
     wealthStack.capacity = numShops;
     wealthStack.current = -1;
 
