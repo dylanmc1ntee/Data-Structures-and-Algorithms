@@ -58,6 +58,66 @@ Node * insertRaccoon(Node * root, int x, int hatSize)
     return root;
 }
 
+Node * rotateLeft(Node * root)
+{
+    Node * parent = root->parent;
+    Node * tmp = root->right;
+    root->right = tmp->left;
+
+    if(tmp->left != NULL)
+    {
+        tmp->left->parent = root;
+    }
+
+    tmp->left = root;
+    root->parent = tmp;
+    tmp->parent = parent;
+
+    if(parent = NULL)
+    {
+        if(parent->right == root)
+        {
+            parent->right = tmp;
+        }
+        else
+        {
+            parent->left = tmp;
+        }
+    }
+
+    return tmp;
+}
+
+Node * rotateRight(Node * root)
+{
+    Node * parent = root->parent;
+    Node * tmp = root->left;
+    root->left = tmp->right;
+
+    if(tmp->right != NULL)
+    {
+        tmp->right->parent = root;
+    }
+
+    tmp->right = root;
+    root->parent = tmp;
+    tmp->parent = parent;
+
+    if(parent = NULL)
+    {
+        if(parent->left == root)
+        {
+            parent->left = tmp;
+        }
+        else
+        {
+            parent->right = tmp;
+        }
+    }
+
+    return tmp;
+}
+
 int main()
 {
 
