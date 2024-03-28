@@ -3,6 +3,13 @@
 #include <string.h>
 
 typedef struct Node Node;
+Node * createNode(int x, int hatSize);
+Node * insertRaccoon(Node * root, int x, int hatSize);
+Node * rotateLeft(Node * root);
+Node * rotateRight(Node * root);
+Node * promote(Node * root);
+void freeAll(Node * root);
+void printTree(Node * root);
 
 struct Node{
 
@@ -31,7 +38,7 @@ Node * createNode(int x, int hatSize)
 
 Node * insertRaccoon(Node * root, int x, int hatSize)
 {
-    // if it is an empty BST
+    // if it is an empty node
     if(root == NULL)
     {
         return createNode(x, hatSize);
@@ -44,6 +51,8 @@ Node * insertRaccoon(Node * root, int x, int hatSize)
         Node * left = insertRaccoon(root->left, x, hatSize);
         root->left = left;
         left->parent = root;
+
+        root = promote(root);
     }
 
     // if location is greater than root location
@@ -53,6 +62,8 @@ Node * insertRaccoon(Node * root, int x, int hatSize)
         Node * right = insertRaccoon(root->right, x, hatSize);
         root->right = right;
         right->parent = root;
+
+        root = promote(root);
     }
 
     return root;
@@ -73,7 +84,7 @@ Node * rotateLeft(Node * root)
     root->parent = tmp;
     tmp->parent = parent;
 
-    if(parent = NULL)
+    if(parent == NULL)
     {
         if(parent->right == root)
         {
@@ -103,7 +114,7 @@ Node * rotateRight(Node * root)
     root->parent = tmp;
     tmp->parent = parent;
 
-    if(parent = NULL)
+    if(parent == NULL)
     {
         if(parent->left == root)
         {
@@ -118,9 +129,96 @@ Node * rotateRight(Node * root)
     return tmp;
 }
 
+Node * promote(Node * root)
+{
+    if(root == NULL || root->parent == NULL)
+    {
+        return root;
+    }
+
+    while(root->hatSize > root->parent->hatSize)
+    {
+        if(root == root->parent->left)
+        {
+            root = rotateRight(root->parent);
+        }
+        else
+        {
+            root = rotateLeft(root->parent);
+        }
+    }
+
+    return root;
+}
+
+void freeAll(Node * root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+
+    freeAll(root->left);
+    freeAll(root->right);
+
+    free(root);
+}
+
+void printTree(Node * root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+
+    printTree(root->left);
+    printf("%d\n", root->hatSize);
+    printTree(root->right);
+}
+
 int main()
 {
+    int x, h;
+    char inp[10];
+    Node * root = NULL;
 
+    while(1)
+    {
+        scanf(" %s", inp);
+
+        if(strcmp(inp, "QUIT") == 0)
+        {
+            break;
+        }
+
+        scanf("%d %d", &x, &h);
+
+        if(strcmp(inp, "ADD") == 0)
+        {
+            root = insertRaccoon(root, x, h);
+            printf("~~~~~~~~~~~\n");
+            printTree(root);
+            printf("~~~~~~~~~~~\n");
+        }
+        
+        if(strcmp(inp, "CAPTURE") == 0)
+        {
+
+        }
+        
+        if(strcmp(inp, "HAT") == 0)
+        {
+
+        }
+        
+        if(strcmp(inp, "STEAL") == 0)
+        {
+
+        }
+    }
+
+    freeAll(root);
+    root = NULL;
 
     return 0;
 }
