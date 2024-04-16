@@ -45,6 +45,7 @@ Node * insert(Node * root, char * word, int amount)
     return root;
 }
 
+// returns 0 when it shouldnt
 int findMin(Node * root, char * word)
 {
     int len = strlen(word);
@@ -73,6 +74,7 @@ int findMin(Node * root, char * word)
     return tmp->subTrieAmount;
 }
 
+// returns the number from A, which includes a1
 int findMax(Node * root, char * word)
 {
     int index;
