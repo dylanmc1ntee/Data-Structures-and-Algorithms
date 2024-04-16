@@ -25,7 +25,7 @@ Node * insert(Node * root, char * word, int amount)
 
     if(word[0] == '\0')
     {
-        root->myAmount = amount;
+        root->myAmount += amount;
         return root;
     }
 
@@ -45,7 +45,6 @@ Node * insert(Node * root, char * word, int amount)
     return root;
 }
 
-// returns 0 when it shouldnt
 int findMin(Node * root, char * word)
 {
     int len = strlen(word);
@@ -54,13 +53,13 @@ int findMin(Node * root, char * word)
 
     for(int i = 0; i < len; i++)
     {
-        if(isdigit(word[0]) == 1)
+        if(isdigit(word[i]) == 1)
         {
-            index = (int)(word[0]);
+            index = (int)(word[i]);
         }
         else
         {
-            index = word[0] - 'a' + 10;
+            index = word[i] - 'a' + 10;
         }
 
         if(tmp->children[index] == NULL) 
@@ -77,23 +76,33 @@ int findMin(Node * root, char * word)
 // returns the number from A, which includes a1
 int findMax(Node * root, char * word)
 {
+    int len = strlen(word);
     int index;
+    Node * tmp = root;
+    int sum = 0;
 
-    if(isdigit(word[0]) == 1)
+    for(int i = 0; i < len; i++)
     {
-        index = (int)(word[0]);
-    }
-    else
-    {
-        index = word[0] - 'a' + 10;
+        if(isdigit(word[i]) == 1)
+        {
+            index = (int)(word[i]);
+        }
+        else
+        {
+            index = word[i] - 'a' + 10;
+        }
+
+        sum += tmp->myAmount;
+
+        if(tmp->children[index] == NULL) 
+        {
+            return tmp->subTrieAmount + sum;
+        }
+
+        tmp = tmp->children[index];
     }
 
-    if(root->children[index] == NULL)
-    {
-        return 0;
-    }
-
-    return root->children[index]->subTrieAmount;
+    return tmp->subTrieAmount + sum;
 }
 
 void freeWholeTrie(Node * root)
