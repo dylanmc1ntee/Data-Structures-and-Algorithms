@@ -44,4 +44,20 @@
   <li>Using a Stack</li>
 </ul>
 
+<p>Assignment 5:</p>
+
+<ul>
+  <li>AVL Trees</li>
+  <li>Treaps</li>
+  <li>Rotations</li>
+</ul>
+
+<p>Assignment 6:</p>
+
+<ul>
+  <li>Tries</li>
+  <li>Search</li>
+  <li>Insert and Delete</li>
+</ul>
+
 
