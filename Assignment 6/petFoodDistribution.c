@@ -3,12 +3,14 @@
 #include <string.h>
 #include <ctype.h>
 
+// prototypes
 typedef struct Node Node;
 Node * insert(Node * root, char * word, int amount);
 int findMin(Node * root, char * word);
 int findMax(Node * root, char * word);
 void freeWholeTrie(Node * root);
 
+// Node struct for tries
 struct Node{
 
     int subTrieAmount, myAmount;
@@ -16,19 +18,25 @@ struct Node{
 
 };
 
+// Inserts a node into trie
 Node * insert(Node * root, char * word, int amount)
 {
+    // routine null check
     if(root == NULL)
     {
         root = (Node *) calloc(1, sizeof(Node));
     }
 
+    // if the word is over
+    // base case
     if(word[0] == '\0')
     {
         root->myAmount += amount;
         return root;
     }
 
+    // converts the letter or number
+    // into correct index 0-32
     int index;
     if(isdigit(word[0]) == 1)
     {
@@ -39,20 +47,26 @@ Node * insert(Node * root, char * word, int amount)
         index = word[0] - 'a' + 10;
     }
 
+    // recursive call
     root->children[index] = insert(root->children[index], &(word[1]), amount);
     root->subTrieAmount += amount;
 
     return root;
 }
 
+// finds min sum
 int findMin(Node * root, char * word)
 {
     int len = strlen(word);
     int index;
     Node * tmp = root;
 
+    // for the length of the word
+    // that is given
     for(int i = 0; i < len; i++)
     {
+        // converts the letter or number
+        // into correct index 0-32
         if(isdigit(word[i]) == 1)
         {
             index = (int)(word[i]);
@@ -62,18 +76,20 @@ int findMin(Node * root, char * word)
             index = word[i] - 'a' + 10;
         }
 
+        // null check
         if(tmp->children[index] == NULL) 
         {
             return 0;
         }
 
+        // moves pointer through trie
         tmp = tmp->children[index];
     }
 
     return tmp->subTrieAmount;
 }
 
-// returns the number from A, which includes a1
+// finds max sum
 int findMax(Node * root, char * word)
 {
     int len = strlen(word);
@@ -81,8 +97,12 @@ int findMax(Node * root, char * word)
     Node * tmp = root;
     int sum = 0;
 
+    // for the length of the word
+    // that is given
     for(int i = 0; i < len; i++)
     {
+        // converts the letter or number
+        // into correct index 0-32
         if(isdigit(word[i]) == 1)
         {
             index = (int)(word[i]);
@@ -92,8 +112,11 @@ int findMax(Node * root, char * word)
             index = word[i] - 'a' + 10;
         }
 
+        // add current nodes 
+        // value to sum counter
         sum += tmp->myAmount;
 
+        // null check
         if(tmp->children[index] == NULL) 
         {
             return tmp->subTrieAmount + sum;
@@ -105,6 +128,7 @@ int findMax(Node * root, char * word)
     return tmp->subTrieAmount + sum;
 }
 
+// frees all dynamic memory
 void freeWholeTrie(Node * root)
 {
     if(root == NULL) return;
@@ -124,18 +148,25 @@ int main()
     int amount;
     Node * root = NULL;
 
+    // scan initial response
     scanf("%s", inp);
+
+    // while user does
+    // not input QUIT
     while(strcmp(inp, "QUIT") != 0)
     {
+        // is user responds ADD
         if(strcmp(inp, "ADD") == 0)
         {
             scanf("%s %d", response, &amount);
             root = insert(root, response, amount);
         }
+        // if user responds CHANGE
         else if(strcmp(inp, "CHANGE") == 0)
         {
             scanf("%s %s", response, newResponse);
         }
+        // if user responds SUM
         else if(strcmp(inp, "SUM") == 0)
         {
             scanf("%s", response);
@@ -145,12 +176,15 @@ int main()
         }
         else
         {
-            // invalid
+            // user responds with
+            // invalid input
         }
 
+        // scan new response
         scanf("%s", inp);
     }
 
+    // free DMA
     freeWholeTrie(root);
     root = NULL;
 
