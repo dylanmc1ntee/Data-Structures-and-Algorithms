@@ -1,0 +1,4 @@
+ADD a 8
+ADD a 6
+SUM ab
+QUIT

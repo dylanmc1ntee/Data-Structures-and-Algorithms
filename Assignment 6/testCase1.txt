@@ -1,0 +1,7 @@
+ADD ab1 8
+ADD abc 6
+ADD a1b 7
+ADD a 5
+SUM ab
+SUM a1
+QUIT

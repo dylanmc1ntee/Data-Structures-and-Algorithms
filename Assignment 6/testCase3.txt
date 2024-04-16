@@ -1,0 +1,5 @@
+ADD a 10
+SUM a
+CHANGE a b
+SUM a
+QUIT
