@@ -8,6 +8,7 @@ typedef struct Node Node;
 Node * insert(Node * root, char * word, int amount);
 int findMin(Node * root, char * word);
 int findMax(Node * root, char * word);
+Node * change(Node * root, char * response, char * newResponse);
 void freeWholeTrie(Node * root);
 
 // Node struct for tries
@@ -86,7 +87,7 @@ int findMin(Node * root, char * word)
         tmp = tmp->children[index];
     }
 
-    return tmp->subTrieAmount;
+    return tmp->subTrieAmount + tmp->myAmount;
 }
 
 // finds max sum
@@ -125,7 +126,77 @@ int findMax(Node * root, char * word)
         tmp = tmp->children[index];
     }
 
-    return tmp->subTrieAmount + sum;
+    return tmp->subTrieAmount + tmp->myAmount + sum;
+}
+
+Node * change(Node * root, char * response, char * newResponse)
+{
+    int len = strlen(response);
+    int index;
+    Node * tmp = root;
+    int sum = 0;
+
+    // for the length of the word
+    // that is given
+    for(int i = 0; i < len; i++)
+    {
+        // converts the letter or number
+        // into correct index 0-32
+        if(isdigit(response[i]) == 1)
+        {
+            index = (int)(response[i]);
+        }
+        else
+        {
+            index = response[i] - 'a' + 10;
+        }
+
+        // null check
+        if(tmp->children[index] == NULL) 
+        {
+            return 0;
+        }
+
+        // moves pointer through trie
+        tmp = tmp->children[index];
+    }
+
+    sum = tmp->myAmount;
+    tmp->myAmount = 0;
+    tmp = root;
+
+    for(int i = 0; i < len; i++)
+    {
+        // converts the letter or number
+        // into correct index 0-32
+        if(isdigit(response[i]) == 1)
+        {
+            index = (int)(response[i]);
+        }
+        else
+        {
+            index = response[i] - 'a' + 10;
+        }
+
+        // null check
+        if(tmp->children[index] == NULL) 
+        {
+            return 0;
+        }
+
+        if(tmp->subTrieAmount != 0)
+        {
+            tmp->subTrieAmount -= sum;
+        }
+
+        // moves pointer through trie
+        tmp = tmp->children[index];
+    }
+
+    tmp->myAmount = 0;
+
+    tmp = insert(tmp, newResponse, sum);
+    return tmp;
 }
 
 // frees all dynamic memory
