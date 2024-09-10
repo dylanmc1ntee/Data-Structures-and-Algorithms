@@ -1,4 +1,4 @@
-<h1>COP-3502C</h1>
+<h1>Computer Science 1</h1>
 
 <p>Collection of work from my Spring 2024 semester at UCF. This keeps my progress for all of my assignments and school projects.
   This will also show my progression in the C language.</p>
