@@ -1,63 +1,52 @@
-<h1>Computer Science 1</h1>
+# Computer Science 1 - Spring 2024
 
-<p>Collection of work from my Spring 2024 semester at UCF. This keeps my progress for all of my assignments and school projects.
-  This will also show my progression in the C language.</p>
+## Collection of Work
 
-<h2>Concepts Learned</h2>
+This repository contains my work for **Computer Science 1** at UCF during the **Spring 2024** semester. It includes various C assignments and projects that demonstrate my progression in the language and my understanding of fundamental data structures and algorithms.
 
-<p>Assignment 0:</p>
+## Assignments
 
-<ul>
-  <li>Leveraging String Library</li>
-  <li>Using 2D Arrays</li>
-</ul>
+### Assignment 0: String Manipulation & 2D Arrays
+- **Key Concepts:**
+  - Leveraging the C string library
+  - Working with 2D arrays
 
-<p>Assignment 1:</p>
+### Assignment 1: Dynamic Memory and Searching
+- **Key Concepts:**
+  - Dynamic Arrays
+  - Dynamic Structs
+  - Linear Search
 
-<ul>
-  <li>Dynamic Arrays</li>
-  <li>Dynamic Structs</li>
-  <li>Linear Search</li>
-</ul>
+### Assignment 2: Linked Lists & Stacks
+- **Key Concepts:**
+  - Singly Linked Lists
+  - Stack Operations: Push, Pop, Peek
 
-<p>Assignment 2:</p>
+### Assignment 3: Recursion & Combinations
+- **Key Concepts:**
+  - Recursive Functions
+  - Generating Combinations
+  - Brute Force Approaches
 
-<ul>
-  <li>Linked Lists</li>
-  <li>Stacks</li>
-  <li>Push, Pop, Peak</li>
-</ul>
+### Assignment 4: Recursive Sorting & Stack Usage
+- **Key Concepts:**
+  - Recursive Sorting Algorithms
+  - Merge Sort
+  - Implementing a Stack for Sorting
 
-<p>Assignment 3:</p>
+### Assignment 5: Balanced Trees
+- **Key Concepts:**
+  - AVL Trees
+  - Treaps
+  - Tree Rotations
 
-<ul>
-  <li>Recursive Functions</li>
-  <li>Combinations</li>
-  <li>Brute Force</li>
-</ul>
+### Assignment 6: Tries & String Processing
+- **Key Concepts:**
+  - Trie Data Structure
+  - Search, Insert, and Delete Operations
 
-<p>Assignment 4:</p>
+---
 
-<ul>
-  <li>Recursive Sorts</li>
-  <li>Merge Sort</li>
-  <li>Using a Stack</li>
-</ul>
-
-<p>Assignment 5:</p>
-
-<ul>
-  <li>AVL Trees</li>
-  <li>Treaps</li>
-  <li>Rotations</li>
-</ul>
-
-<p>Assignment 6:</p>
-
-<ul>
-  <li>Tries</li>
-  <li>Search</li>
-  <li>Insert and Delete</li>
-</ul>
-
-
+**Author:** Dylan McIntee  
+**Course:** CS1 - Spring 2024  
+**University:** University of Central Florida  
